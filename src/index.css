@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+
+/* product page css */
+.products-section {
+  padding: 60px 80px;
+  background: #f8f8f8;
+  font-family: "Inter", sans-serif;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.collection-text {
+  color: #3bb77e;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.products-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.products-header h2 span {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.view-all {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  transition: 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.product-image {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.product-image img {
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #111;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #f5f5f5;
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.rating span {
+  font-size: 12px;
+  color: #777;
+}
+
+.product-card h4 {
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+.brand {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  font-size: 13px;
+  margin-left: 8px;
+  color: #999;
+}
+
+.cart-btn {
+  background: #f3f3f3;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cart-btn:hover {
+  background: #eaeaea;
+}
+
+.see-more {
+  margin-top: 30px;
+}
+
+.see-more a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* close product page */
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 6px 0;
+}
+
+.rating span {
+  font-size: 12px;
+  color: #9E9E9E;
+  margin-left: 4px;
+}
