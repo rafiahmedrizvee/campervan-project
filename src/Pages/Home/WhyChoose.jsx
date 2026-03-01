@@ -38,17 +38,17 @@ const WhyChoose = () => {
 
         {/* RIGHT IMAGE GRID */}
         <div className="why-right">
-          <div className="grid-item large">
+          <div className="grid-item w-[304px] h-[364px] ">
             <img src={img1} alt="Camper 1" />
           </div>
-          <div className="grid-item small-top">
+          <div className="grid-item w-[304px] h-[264px]">
             <img src={img2} alt="Camper 2" />
           </div>
-          <div className="grid-item small-bottom">
-            <img src={img3} alt="Camper 3" />
+          <div className="grid-item w-[304px] h-[264px]">
+            <img src={img4} alt="Camper 3" />
           </div>
-          <div className="grid-item tall">
-            <img src={img4} alt="Camper 4" />
+          <div className="grid-item w-[304px] h-[364px] -mt-[100px] ">
+            <img src={img3} alt="Camper 4" />
           </div>
         </div>
 

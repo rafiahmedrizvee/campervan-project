@@ -1,66 +1,98 @@
 import React from "react";
 import hero from "../../assets/images/landing page picture/hero.png";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+
 import AdventureSection from "./AdventureSection";
 import PopularProducts from "./PopularProducts";
 import CamperCatalog from "./CamperCatalog";
 import WhyChoose from "./WhyChoose";
-
+import Newsletter from "./Newsletter";
+import Blogs from "./Blogs";
+import Testimonials from "./Testimonials";
 
 const Home = () => {
   return (
-   <div>
-         <section
-      className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${hero})`,
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-white/30"></div>
+    <div className="w-full overflow-x-hidden">
 
-      {/* Content Wrapper */}
-      <div className="relative z-10 flex flex-col justify-between min-h-screen px-5 sm:px-8 md:px-16 lg:px-24 py-10">
-        
-        {/* Heading */}
-        <div className="flex justify-center mt-8 md:mt-12">
-          <h1 className="text-3xl sm:text-4xl md:text-[60px] lg:text-[60px] xl:text-[60px] font-bold text-center text-[#2A2B2A] leading-1 ">
-            Build Your Dream Campervan Setup.
-          </h1>
-        </div>
+      {/* ✅ HERO SECTION */}
+      <section className="relative w-full min-h-screen flex items-center overflow-hidden">
 
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 md:gap-0 mb-[10px]  ">
-          
-          {/* Left Content */}
-          <div className="max-w-md text-center md:text-left ">
-            <p className="text-gray-700 mb-4 text-base sm:text-[20px] ">
-              Shop essential campervan accessories for <br /> comfort, cooking,
-              power, storage, and <br /> outdoor living and delivered across Europe.
-            </p>
+        {/* Background Image */}
+        <img
+          src={hero}
+          alt="Campervan setup"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
 
-            <button className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 transition px-6 py-3 rounded-md text-white font-medium shadow-md">
-              Shop Now
-              <ArrowRight size={18} />
-            </button>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />
+
+        {/* Content Wrapper */}
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 py-12 flex flex-col justify-between min-h-screen">
+
+          {/* Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="flex justify-center mt-12 md:mt-20"
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center text-[#2A2B2A] leading-tight max-w-5xl">
+              Build Your Dream Campervan Setup.
+            </h1>
+          </motion.div>
+
+          {/* Bottom Section */}
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-10">
+
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="max-w-xl text-center md:text-left"
+            >
+              <p className="text-gray-700 mb-6 text-base sm:text-lg md:text-xl leading-relaxed">
+                Shop essential campervan accessories for comfort, cooking,
+                power, storage, and outdoor living delivered across Europe.
+              </p>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 transition px-6 sm:px-8 py-3 sm:py-4 rounded-md text-white font-medium shadow-lg text-sm sm:text-base md:text-lg"
+              >
+                Shop Now
+                <ArrowRight size={18} />
+              </motion.button>
+            </motion.div>
+
+            {/* Scroll Down */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="flex items-center gap-2 text-gray-800 font-medium cursor-pointer animate-bounce text-sm sm:text-base"
+            >
+              <span>Scroll Down</span>
+              <ArrowDown size={18} />
+            </motion.div>
+
           </div>
-
-          {/* Scroll Down */}
-          <div className="hidden md:flex items-center gap-2 text-gray-800 font-medium cursor-pointer">
-            <span>Scroll Down</span>
-            <ArrowDown size={18} />
-          </div>
-
         </div>
-      </div>
+      </section>
 
-     
-    </section>
-     <AdventureSection></AdventureSection>
-     <PopularProducts></PopularProducts>
-     <CamperCatalog></CamperCatalog>
-     <WhyChoose></WhyChoose>
-   </div>
+      {/* ✅ Other Sections */}
+      <AdventureSection />
+      <PopularProducts />
+      <CamperCatalog />
+      <WhyChoose />
+      <Newsletter />
+      <Blogs />
+      <Testimonials />
+
+    </div>
   );
 };
 
