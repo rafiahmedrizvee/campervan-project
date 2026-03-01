@@ -1,14 +1,14 @@
 import React from "react";
 import { Heart, ShoppingBag, Star } from "lucide-react";
-import huricans from "../../assets/images/landing page picture/hurricans.png"
-import baker from "../../assets/images/landing page picture/roadbaker.png"
-import sound from "../../assets/images/landing page picture/sound.png"
-import stover from "../../assets/images/landing page picture/stover.png"
-import clipsi from "../../assets/images/landing page picture/clipsi.png"
-import bank from "../../assets/images/landing page picture/bank.png"
-import sound2 from "../../assets/images/landing page picture/sound2.png"
-import lamp from "../../assets/images/landing page picture/lamp.png"
 
+import huricans from "../../assets/images/landing page picture/hurricans.png";
+import baker from "../../assets/images/landing page picture/roadbaker.png";
+import sound from "../../assets/images/landing page picture/sound.png";
+import stover from "../../assets/images/landing page picture/stover.png";
+import clipsi from "../../assets/images/landing page picture/clipsi.png";
+import bank from "../../assets/images/landing page picture/bank.png";
+import sound2 from "../../assets/images/landing page picture/sound2.png";
+import lamp from "../../assets/images/landing page picture/lamp.png";
 
 const products = [
   {
@@ -42,7 +42,7 @@ const products = [
     name: "Stopovers & Debates Card Game",
     brand: "Aventura Edition",
     price: 12.9,
-    image: baker,
+    image: stover,
     rating: 4.5,
   },
   {
@@ -111,30 +111,31 @@ const PopularProducts = () => {
               <img src={product.image} alt={product.name} />
             </div>
 
+            {/* ⭐ Rating Section */}
             <div className="rating">
-  {[...Array(5)].map((_, i) => {
-    const full = i < Math.floor(product.rating);
-    const half = i === Math.floor(product.rating) && product.rating % 1 !== 0;
-
-    return (
-      <Star
-        key={i}
-        size={14}
-        fill={full ? "#AFAFAF" : "none"}
-stroke="#C8C8C8"
-        strokeWidth={1.5}
-      />
-    );
-  })}
-  <span>({product.rating})</span>
-</div>
+              {[...Array(5)].map((_, i) => {
+                const isFilled = i < Math.round(product.rating);
+                return (
+                  <Star
+                    key={i}
+                    size={14}
+                    fill={isFilled ? "#4A4A4A" : "none"}
+                    stroke="#4A4A4A"
+                    strokeWidth={1.5}
+                  />
+                );
+              })}
+              <span>({product.rating})</span>
+            </div>
 
             <h4>{product.name}</h4>
             <p className="brand">{product.brand}</p>
 
             <div className="price-row">
               <div>
-                <span className="price">€{product.price.toFixed(2)}</span>
+                <span className="price">
+                  €{product.price.toFixed(2)}
+                </span>
                 {product.oldPrice && (
                   <span className="old-price">
                     €{product.oldPrice.toFixed(2)}

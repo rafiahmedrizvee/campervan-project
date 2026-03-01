@@ -3,6 +3,8 @@ import hero from "../../assets/images/landing page picture/hero.png";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import AdventureSection from "./AdventureSection";
 import PopularProducts from "./PopularProducts";
+import CamperCatalog from "./CamperCatalog";
+import WhyChoose from "./WhyChoose";
 
 
 const Home = () => {
@@ -56,6 +58,8 @@ const Home = () => {
     </section>
      <AdventureSection></AdventureSection>
      <PopularProducts></PopularProducts>
+     <CamperCatalog></CamperCatalog>
+     <WhyChoose></WhyChoose>
    </div>
   );
 };

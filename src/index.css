@@ -160,7 +160,6 @@ body {
 }
 
 /* close product page */
-
 .rating {
   display: flex;
   align-items: center;
@@ -170,6 +169,268 @@ body {
 
 .rating span {
   font-size: 12px;
-  color: #9E9E9E;
+  color: #7A7A7A;
   margin-left: 4px;
 }
+
+/* Campervan css */
+.catalog-section {
+  padding: 80px 20px;
+  background: #e7e2d8;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.catalog-header .subtitle {
+  color: #3bb77e;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.catalog-header h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.catalog-header .description {
+  max-width: 700px;
+  margin: 0 auto 50px;
+  color: #555;
+  font-size: 15px;
+}
+
+.catalog-image-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.van-image {
+  width: 100%;
+  height: auto;
+}
+
+/* LABEL */
+.catalog-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* GREEN PLUS */
+.plus-icon {
+  width: 22px;
+  height: 22px;
+  background: #3bb77e;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* TOOLTIP BOX */
+.tooltip {
+  background: #2c2c2c;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tooltip span {
+  display: block;
+}
+
+/* ===================== */
+/* RESPONSIVE DESIGN */
+/* ===================== */
+
+@media (max-width: 1024px) {
+  .catalog-header h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog-section {
+    padding: 60px 15px;
+  }
+
+  .catalog-header h2 {
+    font-size: 24px;
+  }
+
+  .tooltip {
+    font-size: 10px;
+  }
+
+  .plus-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalog-label {
+    display: none; /* hide floating labels on small mobile */
+  }
+
+  .catalog-header .description {
+    font-size: 13px;
+  }
+}
+/*  */
+
+
+/* Why choose van css */
+.why-section {
+  padding: 80px 40px;
+  background: #f6f6f6;
+  font-family: "Inter", sans-serif;
+}
+
+.why-container {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* LEFT SIDE */
+.why-left {
+  flex: 1;
+}
+
+.why-left h2 {
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.why-left h2 span {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.why-description {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+.explore-btn {
+  background: #3bb77e;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.explore-btn:hover {
+  background: #2ea66d;
+}
+
+.why-list {
+  list-style: none;
+  padding: 0;
+}
+
+.why-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* RIGHT SIDE GRID */
+.why-right {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.large {
+  grid-row: span 2;
+}
+
+.tall {
+  grid-row: span 2;
+}
+
+/* BOTTOM STRIP */
+.why-bottom {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+}
+
+.why-bottom h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.why-bottom p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ================= */
+/* RESPONSIVE */
+/* ================= */
+
+@media (max-width: 992px) {
+  .why-container {
+    flex-direction: column;
+  }
+
+  .why-right {
+    width: 100%;
+  }
+
+  .why-bottom {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .why-section {
+    padding: 60px 20px;
+  }
+
+  .why-left h2 {
+    font-size: 24px;
+  }
+
+  .why-bottom {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+/*  */
