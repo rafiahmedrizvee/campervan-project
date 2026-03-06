@@ -1,4 +1,3 @@
-import React from "react";
 import { Heart, ShoppingBag, Star } from "lucide-react";
 
 import huricans from "../../assets/images/landing page picture/hurricans.png";
@@ -96,9 +95,9 @@ const PopularProducts = () => {
         </a>
       </div>
 
-      <div className="products-grid">
+      <div className="products  md:grid grid-cols-4 md:gap-5 ">
         {products.map((product) => (
-          <div className="product-card" key={product.id}>
+          <div className="product-card w-full mt-2" key={product.id}>
             {product.discount && (
               <span className="discount-badge">{product.discount}</span>
             )}

@@ -1,4 +1,3 @@
-import React from "react";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
 
 const testimonials = [

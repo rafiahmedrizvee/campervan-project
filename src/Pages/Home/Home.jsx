@@ -1,4 +1,3 @@
-import React from "react";
 import hero from "../../assets/images/landing page picture/hero.png";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -10,6 +9,7 @@ import WhyChoose from "./WhyChoose";
 import Newsletter from "./Newsletter";
 import Blogs from "./Blogs";
 import Testimonials from "./Testimonials";
+import Collection from "./Collection";
 
 const Home = () => {
   return (
@@ -87,9 +87,11 @@ const Home = () => {
       <AdventureSection />
       <PopularProducts />
       <CamperCatalog />
+      <Collection></Collection>
       <WhyChoose />
       <Newsletter />
       <Blogs />
+      
       <Testimonials />
 
     </div>

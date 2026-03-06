@@ -20,10 +20,10 @@ const Header = () => {
 
   return (
     <header className="w-full bg-[#FAF8F5] sticky top-0 z-50 shadow-sm">
-
+      
       {/* Top Bar */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-10 py-2 text-xs sm:text-sm border-b">
-
+        
         {/* Logo */}
         <div className="flex items-center">
           <img
@@ -48,15 +48,19 @@ const Header = () => {
           <NavLink to="/home" className={navLinkClass}>
             Home
           </NavLink>
+
           <NavLink to="/shop" className={navLinkClass}>
             Shop
           </NavLink>
-          <NavLink to="/brands" className={navLinkClass}>
-            Brands
+
+           <NavLink to="/about" className={navLinkClass}>
+            About
           </NavLink>
+
           <NavLink to="/blog" className={navLinkClass}>
             Blog
           </NavLink>
+
           <NavLink to="/contact-us" className={navLinkClass}>
             Contact Us
           </NavLink>
@@ -87,19 +91,46 @@ const Header = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden flex flex-col gap-6 px-6 py-6 bg-white shadow-lg text-gray-700 font-medium">
-          <NavLink to="/home" className={navLinkClass} onClick={() => setIsOpen(false)}>
+          
+          <NavLink
+            to="/home"
+            className={navLinkClass}
+            onClick={() => setIsOpen(false)}
+          >
             Home
           </NavLink>
-          <NavLink to="/shop" className={navLinkClass} onClick={() => setIsOpen(false)}>
+
+          <NavLink
+            to="/shop"
+            className={navLinkClass}
+            onClick={() => setIsOpen(false)}
+          >
             Shop
           </NavLink>
-          <NavLink to="/brands" className={navLinkClass} onClick={() => setIsOpen(false)}>
-            Brands
+
+          <NavLink
+            to="/about"
+            className={navLinkClass}
+            onClick={() => setIsOpen(false)}
+          >
+            About
           </NavLink>
-          <NavLink to="/blog" className={navLinkClass} onClick={() => setIsOpen(false)}>
+
+          <NavLink
+            to="/blog"
+            className={navLinkClass}
+            onClick={() => setIsOpen(false)}
+          >
             Blog
           </NavLink>
-          <NavLink to="/contact-us" className={navLinkClass} onClick={() => setIsOpen(false)}>
+
+          
+
+          <NavLink
+            to="/contact-us"
+            className={navLinkClass}
+            onClick={() => setIsOpen(false)}
+          >
             Contact Us
           </NavLink>
 
