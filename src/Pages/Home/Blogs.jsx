@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
 
 import blog1 from "../../assets/images/landing page picture/blog1.png";
 import blog2 from "../../assets/images/landing page picture/blog2.png";
@@ -30,6 +31,23 @@ const blogs = [
 ];
 
 const Blogs = () => {
+  const sliderRef = useRef();
+  const wrapperRef = useRef();
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+
+    const animation = gsap.to(slider, {
+      x: "-50%",
+      duration: 20,
+      ease: "none",
+      repeat: -1,
+    });
+
+    wrapperRef.current.addEventListener("mouseenter", () => animation.pause());
+    wrapperRef.current.addEventListener("mouseleave", () => animation.play());
+  }, []);
+
   return (
     <section className="blogs-section">
       <div className="blogs-header">
@@ -45,18 +63,20 @@ const Blogs = () => {
         </a>
       </div>
 
-      <div className="blogs-grid">
-        {blogs.map((blog) => (
-          <div className="blog-card" key={blog.id}>
-            <img src={blog.image} alt={blog.title} />
+      <div className="blogs-wrapper" ref={wrapperRef}>
+        <div className="blogs-slider" ref={sliderRef}>
+          {[...blogs, ...blogs].map((blog, index) => (
+            <div className="blog-card" key={index}>
+              <img src={blog.image} alt={blog.title} />
 
-            <div className="blog-content">
-              <span className="blog-date">{blog.date}</span>
-              <h4>{blog.title}</h4>
-              <p>{blog.desc}</p>
+              <div className="blog-content">
+                <span className="blog-date">{blog.date}</span>
+                <h4>{blog.title}</h4>
+                <p>{blog.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

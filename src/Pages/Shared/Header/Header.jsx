@@ -8,7 +8,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import logo from "../../../assets/images/landing page picture/image 3.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +26,13 @@ const Header = () => {
         
         {/* Logo */}
         <div className="flex items-center">
+         <Link to="/" >
           <img
             src={logo}
             alt="Logo"
             className="h-8 sm:h-10 md:h-12 w-auto object-contain"
           />
+         </Link>
         </div>
 
         {/* Currency / Language */}
@@ -70,7 +72,9 @@ const Header = () => {
         <div className="flex items-center gap-4 sm:gap-6 text-gray-700 text-base sm:text-lg">
 
           <FaSearch className="cursor-pointer hover:text-green-600 transition" />
+          <Link to="/login">
           <FaUser className="cursor-pointer hover:text-green-600 transition" />
+          </Link>
           <FaHeart className="cursor-pointer hover:text-green-600 transition" />
 
           <div className="hidden sm:flex items-center gap-2 cursor-pointer hover:text-green-600 transition">

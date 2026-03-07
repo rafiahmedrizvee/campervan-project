@@ -1,6 +1,9 @@
+import { useEffect, useRef } from "react";
 import hero from "../../assets/images/landing page picture/hero.png";
 import { ArrowDown, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
 
 import AdventureSection from "./AdventureSection";
 import PopularProducts from "./PopularProducts";
@@ -11,87 +14,184 @@ import Blogs from "./Blogs";
 import Testimonials from "./Testimonials";
 import Collection from "./Collection";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Home = () => {
+
+  const heroRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const buttonRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+
+    const split = new SplitType(titleRef.current, { types: "chars" });
+
+    const tl = gsap.timeline();
+
+    /* TEXT ANIMATION */
+    tl.fromTo(
+      split.chars,
+      { y: 120, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.03,
+        duration: 1,
+        ease: "power4.out"
+      }
+    )
+      .fromTo(
+        subtitleRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1 },
+        "-=0.6"
+      )
+      .fromTo(
+        buttonRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        "-=0.5"
+      );
+
+    /* HERO IMAGE PARALLAX */
+    gsap.to(imageRef.current, {
+      scale: 1.2,
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    /* 3D MOUSE PARALLAX */
+    const hero = heroRef.current;
+
+    const handleMouseMove = (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 30;
+      const y = (window.innerHeight / 2 - e.clientY) / 30;
+
+      gsap.to(imageRef.current, {
+        x: x,
+        y: y,
+        duration: 1,
+        ease: "power3.out"
+      });
+    };
+
+    hero.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      split.revert();
+      hero.removeEventListener("mousemove", handleMouseMove);
+    };
+
+  }, []);
+
+  /* MAGNETIC BUTTON */
+  const handleMagnet = (e) => {
+
+    const btn = buttonRef.current;
+    const rect = btn.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    gsap.to(btn, {
+      x: x * 0.3,
+      y: y * 0.3,
+      duration: 0.3
+    });
+  };
+
+  const resetMagnet = () => {
+    gsap.to(buttonRef.current, { x: 0, y: 0, duration: 0.3 });
+  };
+
   return (
     <div className="w-full overflow-x-hidden">
 
-      {/* ✅ HERO SECTION */}
-      <section className="relative w-full min-h-screen flex items-center overflow-hidden">
+      {/* HERO */}
+      <section
+        ref={heroRef}
+        className="relative w-full min-h-screen flex items-center overflow-hidden"
+      >
 
-        {/* Background Image */}
+        {/* IMAGE */}
         <img
+          ref={imageRef}
           src={hero}
           alt="Campervan setup"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
 
-        {/* Content Wrapper */}
-        <div className="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 py-12 flex flex-col justify-between min-h-screen">
+        {/* CONTENT */}
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 text-center">
 
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="flex justify-center mt-12 md:mt-20"
+          {/* TITLE */}
+          <h1
+            ref={titleRef}
+            className="
+            font-extrabold
+            leading-tight
+            tracking-tight
+            text-white
+            text-4xl
+            sm:text-5xl
+            md:text-6xl
+            lg:text-7xl
+            xl:text-8xl"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center text-[#2A2B2A] leading-tight max-w-5xl">
-              Build Your Dream Campervan Setup.
-            </h1>
-          </motion.div>
+            Build Your Dream
+            <span className="block bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent">
+              Campervan Setup
+            </span>
+          </h1>
 
-          {/* Bottom Section */}
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-10">
+          {/* SUBTITLE */}
+          <p
+            ref={subtitleRef}
+            className="mt-8 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto"
+          >
+            Shop essential campervan accessories for comfort, cooking,
+            power, storage and outdoor living delivered across Europe.
+          </p>
 
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 1 }}
-              className="max-w-xl text-center md:text-left"
+          {/* BUTTON */}
+          <div className="mt-10 flex justify-center">
+            <button
+              ref={buttonRef}
+              onMouseMove={handleMagnet}
+              onMouseLeave={resetMagnet}
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-8 py-4 rounded-lg text-white text-lg font-medium shadow-xl transition"
             >
-              <p className="text-gray-700 mb-6 text-base sm:text-lg md:text-xl leading-relaxed">
-                Shop essential campervan accessories for comfort, cooking,
-                power, storage, and outdoor living delivered across Europe.
-              </p>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 transition px-6 sm:px-8 py-3 sm:py-4 rounded-md text-white font-medium shadow-lg text-sm sm:text-base md:text-lg"
-              >
-                Shop Now
-                <ArrowRight size={18} />
-              </motion.button>
-            </motion.div>
-
-            {/* Scroll Down */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 1 }}
-              className="flex items-center gap-2 text-gray-800 font-medium cursor-pointer animate-bounce text-sm sm:text-base"
-            >
-              <span>Scroll Down</span>
-              <ArrowDown size={18} />
-            </motion.div>
-
+              Shop Now
+              <ArrowRight size={20} />
+            </button>
           </div>
+
+          {/* SCROLL */}
+          <div className="mt-16 flex justify-center items-center gap-2 text-white animate-bounce">
+            <span>Scroll Down</span>
+            <ArrowDown size={18} />
+          </div>
+
         </div>
       </section>
 
-      {/* ✅ Other Sections */}
+      {/* OTHER SECTIONS */}
       <AdventureSection />
       <PopularProducts />
       <CamperCatalog />
-      <Collection></Collection>
+      <Collection />
       <WhyChoose />
       <Newsletter />
       <Blogs />
-      
       <Testimonials />
 
     </div>

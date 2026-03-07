@@ -8,6 +8,9 @@ import BlogDetails from "../../Pages/Blog/BlogDetails";
 import ProductDetails from "../../Pages/ProductDetails";
 import About from "../../Pages/About/About";
 import ScrollToTop from "../../components/ScrollToTop";
+import SignUp from "../../Pages/SignUp/SignUp";
+import Login from "../../Pages/Login/Login";
+
 
 const router = createBrowserRouter([
   {
@@ -60,6 +63,18 @@ const router = createBrowserRouter([
                 element:<ContactUs></ContactUs>
 
         },
+        {
+                path:"/signup",
+                element:<SignUp></SignUp>
+
+        },
+        {
+                path:"/login",
+                element:<Login></Login>
+
+        },
+      
+      
 ],
   },
 ]);
