@@ -1,8 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import products from "../Pages/data/products";
+import { CartContext } from "../cart/CartContext";
+import { useContext } from "react";
 
 
 export default function ProductDetails() {
+    const { addToCart } = useContext(CartContext);
 
   const { id } = useParams();
 
@@ -82,9 +85,13 @@ export default function ProductDetails() {
 
             </div>
 
-            <button className="bg-green-600 text-white px-6 py-2 rounded-lg">
+           <Link to="/cart" >
+            <button
+              onClick={() => addToCart(product)}
+              className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
+            >
               Add to Cart
-            </button>
+            </button></Link>
 
           </div>
 

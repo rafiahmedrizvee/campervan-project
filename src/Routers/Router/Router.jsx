@@ -11,6 +11,8 @@ import ScrollToTop from "../../components/ScrollToTop";
 import SignUp from "../../Pages/SignUp/SignUp";
 import Login from "../../Pages/Login/Login";
 import CartPage from "../../Pages/CartPage/CartPage";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import AllProduct from "../../Pages/Dashboard/AllProduct";
 
 
 const router = createBrowserRouter([
@@ -83,6 +85,20 @@ const router = createBrowserRouter([
       
 ],
   },
+
+  {
+        path:"/dashboard",
+        element:<DashboardLayout></DashboardLayout>,
+        children:[{
+
+                path:"/dashboard",
+                element:<AllProduct></AllProduct>,
+               
+
+        }
+]
+
+  }
 ]);
 
 export default router;
