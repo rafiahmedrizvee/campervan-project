@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../cart/CartContext";
+import { Link } from "react-router-dom";
 
 
 export default function CartPage() {
@@ -80,10 +81,12 @@ export default function CartPage() {
               <span>${subtotal}</span>
             </div>
 
+           <Link to="/checkout" >
             <button className="w-full bg-green-600 text-white py-3 rounded-lg">
               Checkout
             </button>
 
+           </Link>
           </div>
 
         </div>
@@ -93,3 +96,4 @@ export default function CartPage() {
     </div>
   );
 }
+

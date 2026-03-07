@@ -1,11 +1,15 @@
 import { Heart, ShoppingBag, Star } from "lucide-react";
 import products from "../data/products";
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const PopularProducts = () => {
+
   const sectionRef = useRef(null);
+
+  // number of products shown
+  const [visibleProducts, setVisibleProducts] = useState(8);
 
   useEffect(() => {
     const cards = sectionRef.current.querySelectorAll(".product-card");
@@ -26,7 +30,12 @@ const PopularProducts = () => {
         stagger: 0.15,
       }
     );
-  }, []);
+  }, [visibleProducts]);
+
+  // show more products
+  const handleSeeMore = () => {
+    setVisibleProducts((prev) => prev + 4);
+  };
 
   return (
     <section ref={sectionRef} className="py-16 px-6 bg-gray-50">
@@ -43,18 +52,18 @@ const PopularProducts = () => {
           </h2>
         </div>
 
-        <a
-          href="#"
+        <Link
+          to="/shop"
           className="text-green-600 font-medium hover:underline"
         >
           View All Products →
-        </a>
+        </Link>
       </div>
 
       {/* Product Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-        {products.map((product) => (
+        {products.slice(0, visibleProducts).map((product) => (
 
           <Link
             to={`/product/${product.id}`}
@@ -71,7 +80,6 @@ const PopularProducts = () => {
                 className="h-[160px] object-contain transition-transform duration-500 group-hover:scale-110"
               />
 
-              {/* Wishlist Button */}
               <button className="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:text-red-500 transition">
                 <Heart size={16} />
               </button>
@@ -99,7 +107,7 @@ const PopularProducts = () => {
               ))}
             </div>
 
-            {/* Price + Cart */}
+            {/* Price */}
             <div className="flex items-center justify-between mt-3">
 
               <div className="flex items-center gap-2">
@@ -126,12 +134,17 @@ const PopularProducts = () => {
 
       </div>
 
-      {/* See More */}
-      <div className="flex justify-center mt-12">
-        <button className="px-6 py-3 border rounded-full hover:bg-black hover:text-white transition">
-          See More Products ↓
-        </button>
-      </div>
+      {/* See More Button */}
+      {visibleProducts < products.length && (
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={handleSeeMore}
+            className="px-6 py-3 border rounded-full hover:bg-black hover:text-white transition"
+          >
+            See More Products ↓
+          </button>
+        </div>
+      )}
 
     </section>
   );

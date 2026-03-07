@@ -885,3 +885,7 @@ body {
   animation: heroZoom 20s ease-in-out infinite;
 }
 
+
+.input{
+  @apply border rounded-lg px-3 py-2 w-full text-sm outline-none focus:ring-2 focus:ring-green-500;
+}

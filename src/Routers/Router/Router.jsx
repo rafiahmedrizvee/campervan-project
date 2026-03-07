@@ -13,6 +13,8 @@ import Login from "../../Pages/Login/Login";
 import CartPage from "../../Pages/CartPage/CartPage";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import AllProduct from "../../Pages/Dashboard/AllProduct";
+import CheckoutPage from "../../Pages/CartPage/CheckoutPage";
+import OrderSuccess from "../../Pages/CartPage/OrderSuccess";
 
 
 const router = createBrowserRouter([
@@ -79,6 +81,16 @@ const router = createBrowserRouter([
         {
                 path:"/cart",
                 element:<CartPage></CartPage>
+
+        },
+        {
+                path:"/checkout",
+                element:<CheckoutPage></CheckoutPage>
+
+        },
+        {
+                path:"/order",
+                element:<OrderSuccess></OrderSuccess>
 
         },
       

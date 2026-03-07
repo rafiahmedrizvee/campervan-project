@@ -8,22 +8,34 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import logo from "../../../assets/images/landing page picture/image 3.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CartContext } from "../../../cart/CartContext";
 
 const Header = () => {
-  const { cart, subtotal, setShowPopup } = useContext(CartContext);
+  const { cart, subtotal } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
 
   const navLinkClass = ({ isActive }) =>
     `transition hover:text-green-600 ${
       isActive ? "text-green-600 font-semibold" : ""
     }`;
 
+  const handleSearch = () => {
+    if (searchTerm.trim() !== "") {
+      navigate(`/shop?search=${searchTerm}`);
+      setSearchTerm("");
+    }
+  };
+
   return (
     <header className="w-full bg-[#FAF8F5] sticky top-0 z-50 shadow-sm">
+      
       {/* Top Bar */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-10 py-2 text-xs sm:text-sm border-b">
+        
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
@@ -44,47 +56,52 @@ const Header = () => {
 
       {/* Main Navigation */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-10 py-4">
+
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <NavLink to="/home" className={navLinkClass}>
-            Home
-          </NavLink>
-
-          <NavLink to="/shop" className={navLinkClass}>
-            Shop
-          </NavLink>
-
-          <NavLink to="/about" className={navLinkClass}>
-            About
-          </NavLink>
-
-          <NavLink to="/blog" className={navLinkClass}>
-            Blog
-          </NavLink>
-
-          <NavLink to="/contact-us" className={navLinkClass}>
-            Contact Us
-          </NavLink>
+          <NavLink to="/home" className={navLinkClass}>Home</NavLink>
+          <NavLink to="/shop" className={navLinkClass}>Shop</NavLink>
+          <NavLink to="/about" className={navLinkClass}>About</NavLink>
+          <NavLink to="/blog" className={navLinkClass}>Blog</NavLink>
+          <NavLink to="/contact-us" className={navLinkClass}>Contact Us</NavLink>
         </nav>
 
-        {/* Icons */}
-        <div className="flex items-center gap-4 sm:gap-6 text-gray-700 text-base sm:text-lg">
-          <FaSearch className="cursor-pointer hover:text-green-600 transition" />
+        {/* Search + Icons */}
+        <div className="flex items-center gap-4 sm:gap-6 text-gray-700">
+
+          {/* Search Bar */}
+          <div className="hidden sm:flex items-center border rounded-md overflow-hidden">
+            <input
+              type="text"
+              placeholder="Search product..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-2 py-1 outline-none text-sm"
+            />
+
+            <button onClick={handleSearch} className="px-2">
+              <FaSearch className="cursor-pointer hover:text-green-600" />
+            </button>
+          </div>
+
+          {/* User */}
           <Link to="/login">
             <FaUser className="cursor-pointer hover:text-green-600 transition" />
           </Link>
+
+          {/* Wishlist */}
           <FaHeart className="cursor-pointer hover:text-green-600 transition" />
 
-        <Link
-  to="/cart"
-  className="hidden sm:flex items-center gap-2 cursor-pointer hover:text-green-600 transition"
->
-  <FaShoppingCart />
-
-  <span className="text-sm">
-    Cart ({cart.length}) - ${subtotal}
-  </span>
-</Link>
+          {/* Cart */}
+          <Link
+            to="/cart"
+            className="hidden sm:flex items-center gap-2 cursor-pointer hover:text-green-600 transition"
+          >
+            <FaShoppingCart />
+            <span className="text-sm">
+              Cart ({cart.length}) - ${subtotal}
+            </span>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -93,49 +110,31 @@ const Header = () => {
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
+
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden flex flex-col gap-6 px-6 py-6 bg-white shadow-lg text-gray-700 font-medium">
-          <NavLink
-            to="/home"
-            className={navLinkClass}
-            onClick={() => setIsOpen(false)}
-          >
+          
+          <NavLink to="/home" className={navLinkClass} onClick={() => setIsOpen(false)}>
             Home
           </NavLink>
 
-          <NavLink
-            to="/shop"
-            className={navLinkClass}
-            onClick={() => setIsOpen(false)}
-          >
+          <NavLink to="/shop" className={navLinkClass} onClick={() => setIsOpen(false)}>
             Shop
           </NavLink>
 
-          <NavLink
-            to="/about"
-            className={navLinkClass}
-            onClick={() => setIsOpen(false)}
-          >
+          <NavLink to="/about" className={navLinkClass} onClick={() => setIsOpen(false)}>
             About
           </NavLink>
 
-          <NavLink
-            to="/blog"
-            className={navLinkClass}
-            onClick={() => setIsOpen(false)}
-          >
+          <NavLink to="/blog" className={navLinkClass} onClick={() => setIsOpen(false)}>
             Blog
           </NavLink>
 
-          <NavLink
-            to="/contact-us"
-            className={navLinkClass}
-            onClick={() => setIsOpen(false)}
-          >
+          <NavLink to="/contact-us" className={navLinkClass} onClick={() => setIsOpen(false)}>
             Contact Us
           </NavLink>
 
