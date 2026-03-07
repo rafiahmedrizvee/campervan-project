@@ -6,6 +6,8 @@ import blog1 from "../../assets/images/landing page picture/blog1.png";
 import blog2 from "../../assets/images/landing page picture/blog2.png";
 import blog3 from "../../assets/images/landing page picture/blog3.png";
 
+
+
 const blogs = [
   {
     id: 1,
@@ -31,52 +33,68 @@ const blogs = [
 ];
 
 const Blogs = () => {
-  const sliderRef = useRef();
-  const wrapperRef = useRef();
+  const sliderRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     const slider = sliderRef.current;
+    const wrapper = wrapperRef.current;
 
     const animation = gsap.to(slider, {
       x: "-50%",
-      duration: 20,
+      duration: 25,
       ease: "none",
       repeat: -1,
     });
 
-    wrapperRef.current.addEventListener("mouseenter", () => animation.pause());
-    wrapperRef.current.addEventListener("mouseleave", () => animation.play());
+    const pause = () => animation.pause();
+    const play = () => animation.play();
+
+    wrapper.addEventListener("mouseenter", pause);
+    wrapper.addEventListener("mouseleave", play);
+
+    return () => {
+      wrapper.removeEventListener("mouseenter", pause);
+      wrapper.removeEventListener("mouseleave", play);
+      animation.kill();
+    };
   }, []);
 
   return (
     <section className="blogs-section">
-      <div className="blogs-header">
-        <div>
-          <p className="blogs-subtitle">Our Blogs</p>
-          <h2>
-            Campervan <span>Knowledge Hub</span>
-          </h2>
+      <div className="container">
+
+        <div className="blogs-header">
+          <div>
+            <p className="blogs-subtitle">Our Blogs</p>
+            <h2>
+              Campervan <span>Knowledge Hub</span>
+            </h2>
+          </div>
+
+          <a href="#" className="view-all">
+            View All Blogs <ArrowRight size={18} />
+          </a>
         </div>
 
-        <a href="#" className="view-all">
-          View All Blogs <ArrowRight size={16} />
-        </a>
-      </div>
+        <div className="blogs-wrapper" ref={wrapperRef}>
+          <div className="blogs-slider" ref={sliderRef}>
+            {[...blogs, ...blogs].map((blog, index) => (
+              <div className="blog-card" key={index}>
+                <div className="blog-image">
+                  <img src={blog.image} alt={blog.title} />
+                </div>
 
-      <div className="blogs-wrapper" ref={wrapperRef}>
-        <div className="blogs-slider" ref={sliderRef}>
-          {[...blogs, ...blogs].map((blog, index) => (
-            <div className="blog-card" key={index}>
-              <img src={blog.image} alt={blog.title} />
-
-              <div className="blog-content">
-                <span className="blog-date">{blog.date}</span>
-                <h4>{blog.title}</h4>
-                <p>{blog.desc}</p>
+                <div className="blog-content">
+                  <span className="blog-date">{blog.date}</span>
+                  <h4>{blog.title}</h4>
+                  <p>{blog.desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );

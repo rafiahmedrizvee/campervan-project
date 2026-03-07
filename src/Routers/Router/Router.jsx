@@ -10,6 +10,7 @@ import About from "../../Pages/About/About";
 import ScrollToTop from "../../components/ScrollToTop";
 import SignUp from "../../Pages/SignUp/SignUp";
 import Login from "../../Pages/Login/Login";
+import CartPage from "../../Pages/CartPage/CartPage";
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
         {
                 path:"/login",
                 element:<Login></Login>
+
+        },
+        {
+                path:"/cart",
+                element:<CartPage></CartPage>
 
         },
       

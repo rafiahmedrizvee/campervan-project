@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   FaHeart,
   FaSearch,
@@ -9,8 +9,10 @@ import {
 } from "react-icons/fa";
 import logo from "../../../assets/images/landing page picture/image 3.png";
 import { Link, NavLink } from "react-router-dom";
+import { CartContext } from "../../../cart/CartContext";
 
 const Header = () => {
+  const { cart, subtotal, setShowPopup } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinkClass = ({ isActive }) =>
@@ -20,19 +22,17 @@ const Header = () => {
 
   return (
     <header className="w-full bg-[#FAF8F5] sticky top-0 z-50 shadow-sm">
-      
       {/* Top Bar */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-10 py-2 text-xs sm:text-sm border-b">
-        
         {/* Logo */}
         <div className="flex items-center">
-         <Link to="/" >
-          <img
-            src={logo}
-            alt="Logo"
-            className="h-8 sm:h-10 md:h-12 w-auto object-contain"
-          />
-         </Link>
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+            />
+          </Link>
         </div>
 
         {/* Currency / Language */}
@@ -44,7 +44,6 @@ const Header = () => {
 
       {/* Main Navigation */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-10 py-4">
-
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
           <NavLink to="/home" className={navLinkClass}>
@@ -55,7 +54,7 @@ const Header = () => {
             Shop
           </NavLink>
 
-           <NavLink to="/about" className={navLinkClass}>
+          <NavLink to="/about" className={navLinkClass}>
             About
           </NavLink>
 
@@ -70,17 +69,22 @@ const Header = () => {
 
         {/* Icons */}
         <div className="flex items-center gap-4 sm:gap-6 text-gray-700 text-base sm:text-lg">
-
           <FaSearch className="cursor-pointer hover:text-green-600 transition" />
           <Link to="/login">
-          <FaUser className="cursor-pointer hover:text-green-600 transition" />
+            <FaUser className="cursor-pointer hover:text-green-600 transition" />
           </Link>
           <FaHeart className="cursor-pointer hover:text-green-600 transition" />
 
-          <div className="hidden sm:flex items-center gap-2 cursor-pointer hover:text-green-600 transition">
-            <FaShoppingCart />
-            <span className="text-sm">Cart ($0)</span>
-          </div>
+        <Link
+  to="/cart"
+  className="hidden sm:flex items-center gap-2 cursor-pointer hover:text-green-600 transition"
+>
+  <FaShoppingCart />
+
+  <span className="text-sm">
+    Cart ({cart.length}) - ${subtotal}
+  </span>
+</Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -95,7 +99,6 @@ const Header = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden flex flex-col gap-6 px-6 py-6 bg-white shadow-lg text-gray-700 font-medium">
-          
           <NavLink
             to="/home"
             className={navLinkClass}
@@ -128,8 +131,6 @@ const Header = () => {
             Blog
           </NavLink>
 
-          
-
           <NavLink
             to="/contact-us"
             className={navLinkClass}
@@ -141,7 +142,9 @@ const Header = () => {
           {/* Mobile Cart */}
           <div className="flex items-center gap-2 pt-4 border-t">
             <FaShoppingCart />
-            <span>Cart ($0)</span>
+            <span className="text-sm">
+              Cart ({cart.length}) - ${subtotal}
+            </span>
           </div>
         </div>
       )}

@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+
 import products from "../data/products";
+import { CartContext } from "../../cart/CartContext";
 
 export default function Shop() {
+
+  const { addToCart } = useContext(CartContext);
+
   return (
     <div className="max-w-[1440px] mx-auto px-6 py-10">
 
@@ -13,8 +18,7 @@ export default function Shop() {
 
         {products.map((product) => (
 
-          <Link
-            to={`/product/${product.id}`}
+          <div
             key={product.id}
             className="border rounded-xl p-4 hover:shadow-md"
           >
@@ -32,11 +36,21 @@ export default function Shop() {
               {product.name}
             </h3>
 
-            <p className="font-semibold mt-1">{product.price}</p>
+            <p className="font-semibold mt-1">
+              ${product.price}
+            </p>
 
-          </Link>
+            <button
+              onClick={() => addToCart(product)}
+              className="mt-4 bg-green-600 text-white px-4 py-2 rounded"
+            >
+              Add to Cart
+            </button>
+
+          </div>
 
         ))}
+
       </div>
     </div>
   );
