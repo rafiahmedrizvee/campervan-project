@@ -1,60 +1,44 @@
-import chair from "../../assets/images/landing page picture/chair.png";
-import wheel from "../../assets/images/landing page picture/wheel.png";
-import portable from "../../assets/images/landing page picture/portable.png";
-import land from "../../assets/images/landing page picture/land.png";
-import multi from "../../assets/images/landing page picture/multi-lamp.png";
-import card from "../../assets/images/landing page picture/card.png";
-
-const products = [
-  {
-    id: 1,
-    name: "Sunset folding chair - Forest Green",
-    brand: "Helinox",
-    price: "€89,90",
-    oldPrice: "€99,90",
-    image: chair,
-  },
-  {
-    id: 2,
-    name: "Wheel chocks and storage bag",
-    brand: "Thule",
-    price: "€204,80",
-    image: wheel,
-  },
-  {
-    id: 3,
-    name: "Stopovers & Debates Card Game",
-    brand: "Bivvy Loo",
-    price: "€73,00",
-    image: card,
-  },
-  {
-    id: 4,
-    name: "Pixapresso Pack - Portable Electric",
-    brand: "Wacaco",
-    price: "€204,80",
-    image: portable,
-  },
-  {
-    id: 5,
-    name: "Clipsy Lantern (set of 2)",
-    brand: "Lovolk",
-    price: "€73,00",
-    image: land,
-  },
-  {
-    id: 6,
-    name: "Multifunction lamp - 7 in 1 camper",
-    brand: "Lovork",
-    price: "€149,00",
-    image: multi,
-  },
-];
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import products from "../data/products";
 
 const Collection = () => {
-  return (
-    <div className="max-w-[1440px] mx-auto px-6 py-16">
+  const sectionRef = useRef(null);
 
+  // number of products shown
+  const [visibleProducts, setVisibleProducts] = useState(8);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const cards = sectionRef.current.querySelectorAll(".product-card");
+
+    gsap.fromTo(
+      cards,
+      {
+        opacity: 0,
+        y: 80,
+        scale: 0.9,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+      }
+    );
+  }, [visibleProducts]);
+
+  // show more products
+  const handleSeeMore = () => {
+    setVisibleProducts((prev) => prev + 4);
+  };
+
+  return (
+    <div ref={sectionRef} className="max-w-[1440px] mx-auto px-6 py-16">
+      
       {/* Heading */}
       <div className="mb-12 flex justify-between items-end">
         <div>
@@ -74,10 +58,10 @@ const Collection = () => {
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-        {products.map((product) => (
+        {products.slice(0, visibleProducts).map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 p-5 group"
+            className="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 p-5 group"
           >
 
             {/* Image */}
@@ -126,12 +110,17 @@ const Collection = () => {
 
       </div>
 
-      {/* Mobile Button */}
-      <div className="flex justify-center mt-12 md:hidden">
-        <button className="text-sm font-semibold border border-gray-300 px-6 py-3 rounded-full hover:bg-green-600 hover:text-white hover:border-green-600 transition">
-          View All Products →
-        </button>
-      </div>
+      {/* See More Button */}
+      {visibleProducts < products.length && (
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={handleSeeMore}
+            className="text-sm font-semibold border border-gray-300 px-6 py-3 rounded-full hover:bg-green-600 hover:text-white hover:border-green-600 transition"
+          >
+            See More Products
+          </button>
+        </div>
+      )}
 
       {/* Features */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-20 border-t pt-12 text-center">
@@ -165,6 +154,7 @@ const Collection = () => {
         </div>
 
       </div>
+
     </div>
   );
 };

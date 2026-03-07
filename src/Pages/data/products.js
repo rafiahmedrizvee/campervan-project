@@ -7,6 +7,12 @@ import clipsi from "../../assets/images/landing page picture/clipsi.png";
 import bank from "../../assets/images/landing page picture/bank.png";
 import sound2 from "../../assets/images/landing page picture/sound2.png";
 import lamp from "../../assets/images/landing page picture/lamp.png";
+import chair from "../../assets/images/landing page picture/chair.png";
+import wheel from "../../assets/images/landing page picture/wheel.png";
+import portable from "../../assets/images/landing page picture/portable.png";
+import land from "../../assets/images/landing page picture/land.png";
+import multi from "../../assets/images/landing page picture/multi-lamp.png";
+import card from "../../assets/images/landing page picture/card.png";
 
 
 const products = [
@@ -77,6 +83,50 @@ const products = [
     price: 149,
     image: lamp,
     rating: 4.5,
+  },
+
+  {
+    id: 9,
+    name: "Sunset folding chair - Forest Green",
+    brand: "Helinox",
+    price: "€89,90",
+    oldPrice: "€99,90",
+    image: chair,
+  },
+  {
+    id: 10,
+    name: "Wheel chocks and storage bag",
+    brand: "Thule",
+    price: "€204,80",
+    image: wheel,
+  },
+  {
+    id: 11,
+    name: "Stopovers & Debates Card Game",
+    brand: "Bivvy Loo",
+    price: "€73,00",
+    image: card,
+  },
+  {
+    id: 12,
+    name: "Pixapresso Pack - Portable Electric",
+    brand: "Wacaco",
+    price: "€204,80",
+    image: portable,
+  },
+  {
+    id: 14,
+    name: "Clipsy Lantern (set of 2)",
+    brand: "Lovolk",
+    price: "€73,00",
+    image: land,
+  },
+  {
+    id: 15,
+    name: "Multifunction lamp - 7 in 1 camper",
+    brand: "Lovork",
+    price: "€149,00",
+    image: multi,
   },
 ];
 
