@@ -76,94 +76,97 @@ const WhyChoose = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="why-section">
-      <div className="why-container">
+    <section ref={sectionRef} className="why-section py-16 px-4 lg:px-10">
+  <div className="why-container max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
 
-        {/* LEFT CONTENT */}
-        <div ref={leftRef} className="why-left">
-          <h2>
-            Why Choose Campers store <br />
-            <span>for Campervan Accessories</span>
-          </h2>
+    {/* LEFT CONTENT */}
+    <div ref={leftRef} className="why-left">
+      <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+        Why Choose Campers store <br />
+        <span className="text-primary">for Campervan Accessories</span>
+      </h2>
 
-          <p className="why-description">
-            Buy camper van accessories with confidence on Campersstore.
-            We keep van life shopping simple with clear categories,
-            reliable quality, and EU-focused delivery.
-          </p>
+      <p className="why-description mt-4 text-gray-600 max-w-lg">
+        Buy camper van accessories with confidence on Campersstore.
+        We keep van life shopping simple with clear categories,
+        reliable quality, and EU-focused delivery.
+      </p>
 
-          <button className="explore-btn">
-            Explore Products →
-          </button>
+      <button className="explore-btn mt-6 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+        Explore Products →
+      </button>
 
-          <ul className="why-list">
-            {[
-              "Curated selection of premium products",
-              "Expert advice from real van lifers",
-              "Fast shipping across Europe",
-              "Dedicated customer support"
-            ].map((item, i) => (
-              <li
-                key={i}
-                ref={(el) => (listRef.current[i] = el)}
-              >
-                <Check size={16} /> {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* RIGHT IMAGE GRID */}
-        <div className="why-right grid grid-cols-2 gap-6">
-
-          <div
-            ref={(el) => (imgRef.current[0] = el)}
-            className="grid-item w-[304px] h-[364px]"
+      <ul className="why-list mt-6 space-y-3">
+        {[
+          "Curated selection of premium products",
+          "Expert advice from real van lifers",
+          "Fast shipping across Europe",
+          "Dedicated customer support"
+        ].map((item, i) => (
+          <li
+            key={i}
+            ref={(el) => (listRef.current[i] = el)}
+            className="flex items-center gap-2 text-gray-700"
           >
-            <img src={img1} alt="Camper 1" />
-          </div>
+            <Check size={16} className="text-green-500" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
 
-          <div
-            ref={(el) => (imgRef.current[1] = el)}
-            className="grid-item w-[304px] h-[264px]"
-          >
-            <img src={img2} alt="Camper 2" />
-          </div>
+    {/* RIGHT IMAGE GRID */}
+    <div className="why-right grid grid-cols-2 gap-4 md:gap-6">
 
-          <div
-            ref={(el) => (imgRef.current[2] = el)}
-            className="grid-item w-[304px] h-[264px]"
-          >
-            <img src={img4} alt="Camper 3" />
-          </div>
-
-          <div
-            ref={(el) => (imgRef.current[3] = el)}
-            className="grid-item w-[304px] h-[364px] -mt-[100px]"
-          >
-            <img src={img3} alt="Camper 4" />
-          </div>
-
-        </div>
-
+      <div
+        ref={(el) => (imgRef.current[0] = el)}
+        className="grid-item rounded-xl overflow-hidden"
+      >
+        <img src={img1} alt="Camper 1" className="w-full h-full object-cover" />
       </div>
 
-      {/* BOTTOM STRIP */}
-      <div className="why-bottom">
-        <div>
-          <h4>24–48h</h4>
-          <p>Dispatch (Selected Items)</p>
-        </div>
-        <div>
-          <h4>30-Day</h4>
-          <p>Easy Returns</p>
-        </div>
-        <div>
-          <h4>256-bit</h4>
-          <p>Secure Checkout</p>
-        </div>
+      <div
+        ref={(el) => (imgRef.current[1] = el)}
+        className="grid-item rounded-xl overflow-hidden"
+      >
+        <img src={img2} alt="Camper 2" className="w-full h-full object-cover" />
       </div>
-    </section>
+
+      <div
+        ref={(el) => (imgRef.current[2] = el)}
+        className="grid-item rounded-xl overflow-hidden"
+      >
+        <img src={img4} alt="Camper 3" className="w-full h-full object-cover" />
+      </div>
+
+      <div
+        ref={(el) => (imgRef.current[3] = el)}
+        className="grid-item rounded-xl overflow-hidden md:-mt-10"
+      >
+        <img src={img3} alt="Camper 4" className="w-full h-full object-cover" />
+      </div>
+
+    </div>
+  </div>
+
+  {/* BOTTOM STRIP */}
+  <div className="why-bottom mt-16 grid grid-cols-1 md:grid-cols-3 text-center gap-6 bg-gray-100 py-8">
+    <div>
+      <h4 className="text-2xl font-bold">24–48h</h4>
+      <p className="text-gray-600">Dispatch (Selected Items)</p>
+    </div>
+
+    <div>
+      <h4 className="text-2xl font-bold">30-Day</h4>
+      <p className="text-gray-600">Easy Returns</p>
+    </div>
+
+    <div>
+      <h4 className="text-2xl font-bold">256-bit</h4>
+      <p className="text-gray-600">Secure Checkout</p>
+    </div>
+  </div>
+</section>
   );
 };
 

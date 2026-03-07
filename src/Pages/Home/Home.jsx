@@ -13,6 +13,7 @@ import Newsletter from "./Newsletter";
 import Blogs from "./Blogs";
 import Testimonials from "./Testimonials";
 import Collection from "./Collection";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -164,6 +165,7 @@ const Home = () => {
 
           {/* BUTTON */}
           <div className="mt-10 flex justify-center">
+            <Link to="/shop" >
             <button
               ref={buttonRef}
               onMouseMove={handleMagnet}
@@ -172,7 +174,7 @@ const Home = () => {
             >
               Shop Now
               <ArrowRight size={20} />
-            </button>
+            </button></Link>
           </div>
 
           {/* SCROLL */}
