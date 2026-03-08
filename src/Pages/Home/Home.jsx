@@ -13,8 +13,8 @@ import WhyChoose from "./WhyChoose";
 import Newsletter from "./Newsletter";
 import Blogs from "./Blogs";
 import Testimonials from "./Testimonials";
-import Collection from "./Collection";
 import { Link } from "react-router-dom";
+import Collection from "./Collections";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -343,7 +343,8 @@ const Home = () => {
       <AdventureSection />
       <PopularProducts />
       <CamperCatalog />
-      <Collection />
+      <Collection></Collection>
+
       <WhyChoose />
       <Newsletter />
       <Blogs />
