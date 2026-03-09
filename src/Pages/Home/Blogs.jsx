@@ -8,6 +8,7 @@ import blog3 from "../../assets/images/landing page picture/blog3.png";
 
 
 
+
 const blogs = [
   {
     id: 1,
@@ -61,7 +62,8 @@ const Blogs = () => {
   }, []);
 
   return (
-    <section className="blogs-section">
+  <div>
+      <section className="blogs-section">
       <div className="container">
 
         <div className="blogs-header">
@@ -96,7 +98,10 @@ const Blogs = () => {
         </div>
 
       </div>
+     
     </section>
+    
+  </div>
   );
 };
 

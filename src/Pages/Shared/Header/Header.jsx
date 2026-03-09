@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from "react";
 import {
   FaHeart,
@@ -15,6 +16,9 @@ const Header = () => {
   const { cart, subtotal } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [currency, setCurrency] = useState("EUR");
+  const [language, setLanguage] = useState("en");
 
   const navigate = useNavigate();
 
@@ -48,9 +52,32 @@ const Header = () => {
         </div>
 
         {/* Currency / Language */}
-        <div className="flex gap-4 sm:gap-6 text-gray-600">
-          <span>€ Euro</span>
-          <span>English</span>
+        <div className="flex gap-3 sm:gap-4 text-gray-600">
+
+          {/* Currency Selector */}
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+            className="bg-transparent border rounded px-2 py-1 text-xs sm:text-sm outline-none cursor-pointer hover:border-green-500"
+          >
+            <option value="EUR">€ Euro</option>
+            <option value="USD">$ USD</option>
+            <option value="GBP">£ Pound</option>
+            <option value="BDT">৳ BDT</option>
+          </select>
+
+          {/* Language Selector */}
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="bg-transparent border rounded px-2 py-1 text-xs sm:text-sm outline-none cursor-pointer hover:border-green-500"
+          >
+            <option value="en">English</option>
+            <option value="bn">Bangla</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+          </select>
+
         </div>
       </div>
 
@@ -152,3 +179,5 @@ const Header = () => {
 };
 
 export default Header;
+
+

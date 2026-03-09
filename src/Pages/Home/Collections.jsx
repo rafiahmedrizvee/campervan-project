@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import products from "../data/products";
+import { Link } from "react-router-dom";
 
 const Collection = () => {
   const sectionRef = useRef(null);
 
   // number of products shown
-  const [visibleProducts, setVisibleProducts] = useState(8);
+  const [visibleProducts, setVisibleProducts] = useState(16);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -50,16 +51,21 @@ const Collection = () => {
           </h2>
         </div>
 
+      <Link to="/shop" >
         <button className="hidden md:flex items-center gap-2 text-sm font-semibold border border-gray-300 px-5 py-2 rounded-full hover:bg-green-600 hover:text-white hover:border-green-600 transition">
           View All Products →
-        </button>
+        </button></Link>
       </div>
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-        {products.slice(0, visibleProducts).map((product) => (
-          <div
+        {products.slice(8, visibleProducts).map((product) => (
+          <Link
+            to={`/product/${product.id}`}
+            key={product.id}
+            className="product-card group bg-white border rounded-2xl p-4 transition duration-300 hover:shadow-xl hover:-translate-y-2"
+          > <div
             key={product.id}
             className="product-card bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 p-5 group"
           >
@@ -105,7 +111,7 @@ const Collection = () => {
               </div>
             </div>
 
-          </div>
+          </div></Link>
         ))}
 
       </div>

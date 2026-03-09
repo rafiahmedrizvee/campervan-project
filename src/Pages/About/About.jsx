@@ -8,6 +8,7 @@ import vanInterior from "../../assets/images/about/about2.png";
 import vanKitchen from "../../assets/images/about/about3.png";
 import couple from "../../assets/images/about/about4.png";
 import rv from "../../assets/images/about/about5.png";
+import WhyChoose from "../Home/WhyChoose";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -250,8 +251,10 @@ const About = () => {
           <img src={couple} className="rounded-md w-full gallery-img" />
 
         </div>
+        <WhyChoose></WhyChoose>
 
       </section>
+      
 
     </div>
   );
